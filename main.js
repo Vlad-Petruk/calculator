@@ -55,3 +55,5 @@ function operate (a,operator,b) {
     }
     
 }
+
+//i wonted to create eventListeners for all buttons, that woud be displaying they textContext directly in display, at once
