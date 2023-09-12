@@ -34,6 +34,13 @@ let btnEqual = document.querySelector('.equal');
 //     return NaN; // Return NaN if the expression is invalid
 //   }
 
+function clear () {
+    a = '';
+    b = '';
+    operator = '';
+    display.value = 0;
+}
+
 function add (a,b) {
     let addedNumbers;
     a = Number(a);
@@ -55,7 +62,7 @@ function multiply(a,b) {
 function division (a,b) {
     let dividedNumbers = a / b;
     return dividedNumbers;
-}
+} 
 
 function operate (a,operator,b) {
     if (operator === '+'){
@@ -65,7 +72,10 @@ function operate (a,operator,b) {
     } else if (operator === '*'){
         return multiply(a,b);
     } else if (operator === '/') {
-        return division(a,b);
+        if (b === '0'){
+            alert("Don't you dare" );
+            return
+        } else return division(a,b);
     }
     
 }
@@ -94,17 +104,18 @@ btnOperator.forEach((btn) =>{
 })
 btnEqual.addEventListener('click',()=>{
     if (a !== '') {
-    let result = operate(a,operator,b);
-    console.log(result)
-    display.value = result;
-    operator = '';
-    b = '';
-    a = result;}
+        let result = operate(a,operator,b);
+        console.log(result)
+        if (result === undefined){
+            return clear();
+        } else {display.value = result;} 
+    // } else {display.value = result.toFixed(2);}  Trying to deal with decimals(don`t work as expected) 
+        operator = '';
+        b = '';
+        a = result;
+    }
 })
 
 btnClear.addEventListener('click',()=>{
-    a = '';
-    b = '';
-    operator = '';
-    display.value = 0;
+    clear()
 })
